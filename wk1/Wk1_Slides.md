@@ -8,26 +8,13 @@ Week 1 Tute
 
 ---
 
-# Hello!
-- Course Overview
-- Introductions
-- Tute Questions
-- Off to the lab!
-
----
-
 # Course Overview
- - Quite similar to COMP1511.
- - Course website tour.
+
+[https://cgi.cse.unsw.edu.au/~cs1521/24T1/](https://cgi.cse.unsw.edu.au/~cs1521/24T1/)
 
 ---
 
 # Introductions!
-
-- Name
-- Pronouns
-- Year/Degree
-- Highlight of your last week
 
 ---
 
@@ -58,10 +45,6 @@ Where is each variable located in memory? Where are the strings located?
 # Question 3
 What is wrong with the following code?
 ```C
-#include <stdio.h>
-
-int *get_num_ptr(void);
-
 int main(void) {
     int *num = get_num_ptr();
 
@@ -76,7 +59,7 @@ int *get_num_ptr(void) {
 
 Assuming we still want `get_num_ptr` to return a pointer, how can we fix this code?
 
-How does fixing this code effect each variable's location in memory?
+How does fixing this code affect each variable's location in memory?
 
 
 ---
@@ -191,7 +174,7 @@ What happens if the command-line arguments are not integers?
 
 We want to write a function that can calculate the factorial of some positive integer `n`.
 
-Let's analyse the problem!
+We'll start by analysing the problem.
 
 ---
 
@@ -208,25 +191,12 @@ $5! = 5\times4\times3\times2\times1 = 120.$
 
 # Recursion Example: Factorial
 
-Solving the problem without recursion:
-```C
-int fact(int n) {
-    int total = 1;
-    int i = 1;
-
-    while (i < n) {
-        total *= i;
-        i++;
-    }
-
-    return total;
-}
-```
+Solve the problem without recursion
 
 ---
 
 # Recursion Example: Factorial
-A function that calls itself.
+A "recursive" function is a function that calls itself.
 
 
 ---
@@ -236,23 +206,11 @@ A function that calls itself.
 $5! = 5\times(4\times3\times2\times1).$
 $5! = 5\times4!.$
 
-Going further:
-$n! = n\times(n-1)!.$
-
 ---
 
 # Recursion Example: Factorial
 
-Solving the problem with recursion:
-```C
-int fact(int n) {
-    if (n == 1) {
-        return 1;
-    }
-
-    return n * fact(n - 1);
-}
-```
+Solve the problem with recursion
 
 ---
 
@@ -262,33 +220,38 @@ int fact(int n) {
 
 ---
 
-Do we have some more time to have a look at some MIPS?
-
----
-
 # What is MIPS?
 - When a high-level language like C gets compiled, the compiler has to do a lot of work to convert it into machine code.
-- Mips is an assembly language, which, unlike machine code, is still human-readable, but it's very easy to convert mips into machine code.
+- Mips is an assembly language, which means it directly corresponds with machine code, while still being human-readable.
 - We use a type of mips called mipsy, which has some handy pseudo-instructions.
 
 ---
 
-# Looking at Some MIPS Code
+# What is `mipsy`?
 
-```mips
-.text
-main:
+- mipsy is a mips emulator, that lets us run mips code on our non-mips CPUs
 
-	li	$v0, 4			# syscall 4: print_string
-	la	$a0, hello_world_msg	
-	syscall				# printf("Hello world\n");
+- we also have [`mipsy-web`](https://cs1521.web.cse.unsw.edu.au/mipsy/), which has a user interface and lets you create breakpoints and step through mips code, line by line
 
+---
 
-	li	$v0, 0
-	jr	$ra			# return 0;
+# Introduction to mips
 
-	.data
+Without diving into too much detail, translate the following C program into MIPS assembler and run it with 1521 mipsy.
 
-hello_world_msg:
-	.asciiz	"Hello world\n"
+```C
+#include <stdio.h>
+
+int main(void) {
+    int x, y;
+
+    printf("Enter a number: ");
+    scanf("%d", &x);
+
+    y = x * x;
+
+    printf("%d\n", y);
+
+    return 0;
+}
 ```

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int *get_num_ptr(void);
 
@@ -10,7 +11,7 @@ int main(void) {
 }
 
 int *get_num_ptr(void) {
-    int * x = malloc(sizeof(int));
+    int *x = malloc(sizeof(int));
     *x = 42;
     return x;
 }

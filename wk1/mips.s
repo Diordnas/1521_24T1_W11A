@@ -29,8 +29,7 @@ main:
 	syscall				# syscall mode 5: read int
 	move	$t0, $v0
 
-	# TODO: square the number
-	mul	$t1, $t0, $t0
+	mul	$t1, $t0, $t0		# square the number
 
 	move	$a0, $t1		# printf("%d")
 	li	$v0, 1			# syscall mode 1: print int

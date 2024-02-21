@@ -1,35 +1,27 @@
-# You should have more comments than I do in this file
-# Ideally, nearly every line should have a comment next to it! :D
 
-# The five parts of a loop:
-#  - initialise
-#  - check the condition
-#  - the body of the loop
-#  - increment the counter and jump back to condition
-#  - end!
 
 main:
 	# x in $t0
 
-init:
+loop_init:
 	li	$t0, 24
 
-cond:
-	bge	$t0, 42, end
+loop_cond:
+	bge	$t0, 42, loop_end
 
-body:
-	li	$v0, 1			# mode 1: print int
-	move	$a0, $t0		#
-	syscall				# print(y)
-
-	li	$v0, 11
-	li	$a0, '\n'
+loop_body:
+	move	$a0, $t0		# printf("%d", y)
+	li	$v0, 1			# mode 1: print_int
 	syscall
 
-step:
-	add	$t0, $t0, 3
-	b	cond
+	li	$a0, '\n'		# printf("\n")
+	li	$v0, 11			# mode 11: print_char
+	syscall
 
-end:
-	li	$v0, 0
+loop_incr:
+	add	$t0, $t0, 3
+	b	loop_cond
+
+loop_end:
+
 	jr	$ra

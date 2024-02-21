@@ -6,6 +6,8 @@ class: invert
 # Welcome to MIPS!
 Week 2 Tute
 
+(We'll start at 5 past :D)
+
 ---
 
 # Mips

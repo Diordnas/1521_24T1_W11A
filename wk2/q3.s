@@ -1,41 +1,48 @@
-# You should have more comments than I do in this file
-# Ideally, nearly every line should have a comment next to it! :D
+# Prints the square of a number
+
+SQUARE_MAX = 46340
 
 main:
 	# x in $t0
+	# y in $t1
 
-	li	$v0, 4
-	la	$a0, prompt_string
+	la	$a0, prompt_str		# printf("Enter a number: ")
+	li	$v0, 4			# mode 4: print_string
 	syscall
 
-	li	$v0, 5
-	syscall
+	li	$v0, 5			# scanf("%d", x);
+	syscall				# mode 5: read_int
 	move	$t0, $v0
 
-	ble	$t0, 100, print_small_big
-	bge	$t0, 1000, print_small_big
+	ble	$t0, 100, if_true
+	bge	$t0, 1000, if_true
+	b	if_false
 
-print_medium:
-	li	$v0, 4
-	la	$a0, medium_string
+if_true:
+	la	$a0, err_str		# printf("Enter a number: ")
+	li	$v0, 4			# mode 4: print_string
 	syscall
 
-	b	end
+	b	if_end
 
-print_small_big:
-	li	$v0, 4
-	la	$a0, small_big_string
+if_false:
+	mul	$t1, $t0, $t0		# y = x * x
+
+	move	$a0, $t1		# printf("%d", y)
+	li	$v0, 1			# mode 1: print_int
 	syscall
 
+	li	$a0, '\n'		# printf("\n")
+	li	$v0, 11			# mode 11: print_char
+	syscall
 
-end:
+if_end:
+
 	li	$v0, 0
 	jr	$ra
 
 	.data
-prompt_string:
-	.asciiz"Enter a number: "
-medium_string:
-	.asciiz"medium\n"
-small_big_string:
-	.asciiz"small/big\n"
+prompt_str:
+	.asciiz "Enter a number: "
+err_str:
+	.asciiz "square too big for 32 bits\n"

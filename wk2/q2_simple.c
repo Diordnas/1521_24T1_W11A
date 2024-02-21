@@ -11,15 +11,16 @@ int main(void) {
     printf("Enter a number: ");
     scanf("%d", &x);
 
-    if (x <= SQUARE_MAX) goto square_number;
-    
-    printf("square too big for 32 bits\n");
-    goto end;
+    if (x <= SQUARE_MAX) goto if_false;
 
-square_number:
+    printf("square too big for 32 bits\n");
+    goto if_end;
+
+if_false:
     y = x * x;
     printf("%d\n", y);
     
-end:
+if_end:
+
     return 0;
 }

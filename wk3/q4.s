@@ -1,30 +1,32 @@
-# A program that reads 10 numbers into memory
+# // A simple program that will read 10 numbers into an array
 
 N_SIZE = 10
 
 main:
 	# i in $t0
+	# temp value in $t1
 
-loop_init:
-	li	$t0, 0			# i = 0
+read_numbers_loop_init:
+	li	$t0, 0					# i = 0
 
-loop_cond:
-	bge	$t0, N_SIZE, loop_end
+read_numbers_loop_cond:
+	bge	$t0, N_SIZE, read_numbers_loop_end	# while i < N_size {
 
-loop_body:
-	li	$v0, 5			# syscall 5 - read int
-	syscall
-	move	$t1, $v0		# move user-input value into $t1
+read_numbers_loop_body:
+	li	$v0, 5					# scanf("%d", $t1)
+	syscall						# mode 5: read_int
+	move	$t1, $v0
 
-	mul	$t2, $t0, 4		# index = i*4;
-	sw	$t1, numbers($t2)	# store $t1 into numbers[i]
+	mul	$t2, $t0, 4				# numbers[i] = $t1
+	sw	$t1, numbers($t2)
 
-loop_step:
-	add	$t0, $t0, 1		# i++
+read_numbers_loop_incr:
+	add	$t0, $t0, 1				# i++
+	b	read_numbers_loop_cond			# }
 
-loop_end:
-	li	$v0, 0			# return 0
-	jr	$ra
+read_numbers_loop_end:
+	jr	$ra					# return
 
 	.data
-numbers:	.space 4 * N_SIZE
+numbers:
+	.word	0, 0, 0, 0, 0, 0, 0, 0, 0, 0		# array of 10 zeroes

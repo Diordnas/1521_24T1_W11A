@@ -6,12 +6,14 @@ class: invert
 # Welcome Back To C!
 Week 5 Tute
 
+We'll start at 10 past :D
+
 --- 
 
 # Numbers!
 
-- There are many different ways to represent any number.
-- List some ways we could represent the number 5:
+- There are many different ways to refer to any number.
+- List some ways we could represent the number 78:
 
     -
     -
@@ -26,15 +28,14 @@ Week 5 Tute
 
 # Numbers! (sample answers)
 
-- There are many different ways to represent any number.
-- List some ways we could represent the number 5:
+- There are many different ways to refer to any number.
+- List some ways we could represent the number 78:
 
-    - The numeral `5`
-    - The word `five`
-    - Three dots: `●●●●●`
-    - Tally marks ~~`||||`~~
-    - Holding up five fingers
-    - The binary number `101`
+    - The numeral `78`
+    - The english words `seventy eight`
+    - The french words `soixante-dix-huit`
+    - Tally marks ~~`|||| |||| |||| |||| |||| |||| |||| |||| |||| |||| |||| |||| |||| |||| ||||`~~`|||`
+    - Binary: `1001110`  Octal: `116`  Hexadecimal:`4E`
 
 - What are the pros and cons of using these methods of representing numbers?
 
@@ -42,7 +43,7 @@ Week 5 Tute
 
 # What representation do computers use?
 
-- Computers don't write symbols on paper, or have fingers to hold up. They have circuits!
+- Computers don't write symbols on paper, they have circuits!
 - They represent a number using a bunch of circuits that can be on or off (1 or 0).
 - Each of these circuits is called a bit. Recall that one byte is made of 8 bits.
 - Computers represent integers using a system called binary.
@@ -70,7 +71,7 @@ $$2^2(1)+2(0)+1(1)=4+1=5$$
 
 ---
 
-# Decimal to Binary
+# Decimal from Binary
 
 How would the binary number `101010` be represented in decimal?
 
@@ -78,7 +79,7 @@ Anwser: __
 
 ---
 
-# Binary to Decimal
+# Binary from Decimal
 
 How would the decimal number 24 be represented as a binary numeral?
 

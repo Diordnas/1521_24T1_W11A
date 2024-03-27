@@ -1,16 +1,16 @@
 
 #include <stdint.h>
 
-const SIX_MASK 0x3F; // 0b0011 1111
+#define MIDDLE_SIX 0b00000000000001111110000000000000
 
 uint32_t six_middle_bits(uint32_t u) {
     // Extract and return six middle bits
 
-    // Shift right 13 bits
-    u = u >> 13;
+    // Use AND to extract middle six bits
+    u &= MIDDLE_SIX;
 
-    // Mask using & so we have the last 6 bits
-    u = u & SIX_MASK;
+    // Shift those six bits into place
+    u >>= 13;
 
     return u;
 }

@@ -6,6 +6,8 @@ class: invert
 # More Number Encoding
 Week 7 Tute
 
+We'll start at 10 past :D
+
 --- 
 
 # Week 5 Revision:
@@ -68,7 +70,7 @@ Another way to think about it:
 
 # A quick example (in 8-bits):
 
-So $1$ is represented by `0b........`, and $-3$ is still `0b........`. So we can calculate $-3+1$:
+So $1$ is represented by `0b........`, and $-3$ is `0b........`. So we can calculate $-3+1$:
 
 ```
 0b........

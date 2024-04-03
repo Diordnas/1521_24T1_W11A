@@ -6,6 +6,14 @@ class: invert
 # Files!
 Week 8 Tute
 
+We'll start at 10 past :D
+
+---
+
+# Assignment 2
+
+Due Week 10 Wednesday, 6pm
+
 ---
 
 # Q1 - Unix Filesystem
@@ -173,7 +181,8 @@ Write a C program, which is given one command-line argument, the name of a file,
 
 # Q5
 
-Write a C program, fgrep.c, which is given 1+ command-line arguments which is a string to search for.
+Write a C program, fgrep.c, which is given 1 or more command-line arguments.
+
 If there is only 1 command-line argument it should read lines from stdin and print them to stdout iff they contain the string specified as the first command line argument.
 
 If there are 2 or more command line arguments, it should treat arguments after the first as filenames and print any lines they contain which contain the string specified as the first command line arguments.
@@ -241,7 +250,7 @@ Whence can be:
 
 # Q6
 
-Consider a file of size 10000 bytes, open for reading on with the file pointer `fp``, initially positioned at the start of the file (offset 0).
+Consider a file of size 10000 bytes, open for reading on with the file pointer `fp`, initially positioned at the start of the file (offset 0).
 
 What will be the file position after each of these calls to `fseek()`?
 

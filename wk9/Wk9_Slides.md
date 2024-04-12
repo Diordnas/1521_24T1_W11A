@@ -6,6 +6,8 @@ class: invert
 # More Filesystem + Encoding Content
 Week 9 Tute
 
+We''l start at 10 past :D
+
 ---
 
 # MyExperience Survey!

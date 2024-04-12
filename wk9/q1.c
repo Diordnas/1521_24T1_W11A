@@ -1,42 +1,33 @@
-// Print the contents of HOME/.diary to stdout
-
-// Find home/.diary
-// Open it
-// Handle errors
-// Print the file to stdout
-
 #include <stdio.h>
 #include <stdlib.h>
 
-// This could be a problem if the path gets super long, but
-// 256 is a sensible limit for path names
-// Maybe switch to 512 if there are problems
-#define MAX_LEN 256
+#define MAX_PATH_LEN 512
 
-int main (int argc, char *argv[]) {
-    // Getenv the home variable into a string
+int main() {
+    // Get the $HOME environment variable
     char *home = getenv("HOME");
 
-    // Create a buffer
-    char *filename = malloc(MAX_LEN);
+    // Construct a filename as $HOME + /.diary
+    char filename[MAX_PATH_LEN];
+    snprintf(filename, MAX_PATH_LEN, "%s/.diary", home);
 
-    // snprintf prints to a buffer
-    snprintf(filename, MAX_LEN, "%s/.diary", home);
-
-    // open the file
+    // Open the file
     FILE *fp = fopen(filename, "r");
 
-    // handle errors
+    // Handle errors
     if (fp == NULL) {
         perror(filename);
         return 1;
     }
 
-    // loop through the fike
+    // Print file contents to stdout
     int c;
     while ((c = fgetc(fp)) != EOF) {
-        printf("%c", c);
+        putc(c, stdout);
     }
+
+    // Close the file
+    fclose(fp);
 
     return 0;
 }

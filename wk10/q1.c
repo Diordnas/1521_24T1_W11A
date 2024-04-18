@@ -1,22 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-#include <errno.h>
 #include <spawn.h>
-#include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 // Get the system environment
 extern char **environ;
 
-int main(int argc, char *argv[]) {
-    // set up for posix spawn
-    pid_t id;
+int main () {
+    pid_t pid;
     char *p_argv[] = {"/usr/bin/whoami", NULL};
 
-    // posix spawn
     int spawn_status = posix_spawn(
-        &id,
+        &pid,
         "/usr/bin/whoami",
         NULL,
         NULL,
@@ -24,22 +19,25 @@ int main(int argc, char *argv[]) {
         environ
     );
 
-    // handle errors
+    // Handle errors with perror;
     if (spawn_status != 0) {
-        errno = spawn_status;   // Set the global error number
-        perror("posix_spawn");
+        // Directly modify the global errno variable
+        errno = spawn_status;
+        perror("posix_spawn error");
         return 1;
     }
 
-    // waitpid - wait for the process to finish
-    int spawn_exit_status;
-    if (waitpid(id, &spawn_exit_status, 0) == -1) {
-        perror("waitpid");
+    // Wait for the process we spawned to finish before we do anything else
+    int return_status;
+    waitpid(pid, &return_status, 0);
+
+    if (return_status != 0) {
+        errno = spawn_status;
+        perror("posix_spawn error");
         return 1;
     }
 
-    // Print something else - this should be after the username
-    printf("something else\n");
+    printf("This should be printed *after* whoami finishes.\n");
 
     return 0;
 }

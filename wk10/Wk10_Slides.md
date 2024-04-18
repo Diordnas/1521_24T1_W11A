@@ -6,6 +6,8 @@ class: invert
 # Final Week!
 Week 10 Tute
 
+We'll start at 10 past :D
+
 ---
 
 # MyExperience Survey!
